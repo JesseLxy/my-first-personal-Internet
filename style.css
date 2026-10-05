@@ -1,0 +1,411 @@
+/* ============================================================
+   2408090601016廖夕瑶的第一个网页 —— 样式表 style.css
+   说明：本文件为页面所有样式；图片均位于 ../images 目录
+   ============================================================ */
+
+/* ============ 全局变量与基础样式 ============ */
+:root{
+  --cream:#FBF6EE;
+  --cream-2:#F4EADD;
+  --ink:#3B332C;
+  --ink-light:#6F655B;
+  --green:#2F5D50;
+  --green-light:#3E7A6B;
+  --orange:#E08155;
+  --orange-light:#F2A87F;
+  --pink:#E4B3B0;
+  --red-163:#E64438;
+  --bili-pink:#FB7299;
+  --white:#FFFFFF;
+  --shadow:0 10px 30px rgba(59,51,44,.10);
+  --shadow-hover:0 18px 42px rgba(47,93,80,.18);
+  --radius:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.8;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{
+  font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  font-weight:700;
+  line-height:1.4;
+}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{display:block;width:100%;height:100%;object-fit:cover;}
+::selection{background:var(--orange-light);color:#fff;}
+
+/* ============ 导航栏 ============ */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  transition:all .35s ease;
+}
+.navbar.scrolled{
+  background:rgba(251,246,238,.92);
+  backdrop-filter:blur(12px);
+  box-shadow:0 4px 20px rgba(59,51,44,.08);
+}
+.nav-inner{
+  max-width:1120px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 24px;
+}
+.nav-logo{
+  font-family:"Noto Serif SC","Songti SC",serif;
+  font-size:18px;font-weight:700;color:var(--green);
+  letter-spacing:1px;
+}
+.nav-links{display:flex;gap:8px;}
+.nav-links a{
+  padding:8px 16px;border-radius:999px;
+  font-size:15px;color:var(--ink-light);
+  transition:all .25s ease;
+}
+.nav-links a:hover{background:var(--green);color:#fff;}
+.nav-toggle{
+  display:none;background:none;border:none;cursor:pointer;
+  font-size:24px;color:var(--green);
+}
+
+/* ============ 首屏 Hero ============ */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;color:#fff;overflow:hidden;
+}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(30,45,40,.55) 0%,rgba(30,45,40,.35) 45%,rgba(30,45,40,.72) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:860px;padding:110px 24px 80px;
+}
+.hero-hello{
+  display:inline-block;
+  font-size:15px;letter-spacing:4px;
+  padding:7px 22px;border:1px solid rgba(255,255,255,.65);
+  border-radius:999px;margin-bottom:28px;
+  backdrop-filter:blur(4px);
+}
+.hero h1{
+  font-size:clamp(28px,5.4vw,54px);
+  margin-bottom:22px;
+  text-shadow:0 4px 24px rgba(0,0,0,.3);
+  letter-spacing:2px;
+}
+.hero-sub{
+  font-size:clamp(15px,2.2vw,19px);
+  color:rgba(255,255,255,.9);margin-bottom:40px;
+  letter-spacing:1px;
+}
+.hero-sub .heart{color:var(--orange-light);}
+.hero-btn{
+  display:inline-block;
+  padding:14px 40px;border-radius:999px;
+  background:var(--orange);color:#fff;
+  font-size:16px;letter-spacing:2px;
+  box-shadow:0 10px 26px rgba(224,129,85,.45);
+  transition:all .3s ease;
+}
+.hero-btn:hover{background:var(--orange-light);transform:translateY(-3px);}
+.scroll-hint{
+  position:absolute;bottom:26px;left:50%;
+  transform:translateX(-50%);z-index:2;
+  font-size:30px;color:rgba(255,255,255,.85);
+  animation:bounce 1.8s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translate(-50%,0);}
+  50%{transform:translate(-50%,12px);}
+}
+
+/* ============ 通用区块 ============ */
+section{padding:96px 24px;}
+.container{max-width:1120px;margin:0 auto;}
+.section-head{text-align:center;margin-bottom:58px;}
+.section-head .en{
+  display:block;font-size:13px;letter-spacing:5px;
+  color:var(--orange);text-transform:uppercase;
+  font-family:Georgia,serif;margin-bottom:10px;
+}
+.section-head h2{
+  font-size:clamp(26px,3.6vw,38px);color:var(--green);
+}
+.section-head h2::after{
+  content:"";display:block;width:56px;height:4px;
+  background:var(--orange-light);border-radius:2px;
+  margin:16px auto 0;
+}
+.section-head p{color:var(--ink-light);margin-top:16px;font-size:15px;}
+
+/* ============ 关于我 ============ */
+#about{background:linear-gradient(180deg,var(--cream) 0%,#F7EFE3 100%);}
+.about-grid{
+  display:grid;grid-template-columns:340px 1fr;
+  gap:40px;align-items:start;
+}
+.profile-card{
+  background:var(--white);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:34px 28px;
+  text-align:center;position:sticky;top:100px;
+}
+.avatar-wrap{
+  width:150px;height:150px;border-radius:50%;
+  margin:0 auto 20px;padding:5px;
+  background:linear-gradient(135deg,var(--orange-light),var(--green-light));
+}
+.avatar-wrap img{border-radius:50%;}
+.profile-card h3{font-size:24px;color:var(--green);}
+.profile-card .tagline{
+  font-size:13px;color:var(--orange);letter-spacing:2px;
+  margin:8px 0 22px;
+}
+.info-list{text-align:left;}
+.info-list li{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 6px;border-bottom:1px dashed var(--cream-2);
+  font-size:14.5px;color:var(--ink);
+}
+.info-list li:last-child{border-bottom:none;}
+.info-list .ico{
+  width:34px;height:34px;flex:0 0 34px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--cream);border-radius:10px;font-size:16px;
+}
+.info-list b{font-weight:600;}
+
+.about-body{
+  background:var(--white);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:38px 40px;
+}
+.about-body h3{font-size:22px;color:var(--green);margin-bottom:16px;}
+.about-body p{color:var(--ink-light);font-size:15.5px;margin-bottom:14px;text-indent:2em;}
+.motto{
+  margin:24px 0 28px;padding:20px 24px;
+  background:linear-gradient(135deg,#FDF3EC,#EEF5F2);
+  border-radius:14px;border-left:5px solid var(--orange);
+  font-family:"Noto Serif SC","Songti SC",serif;
+  color:var(--green);font-size:16px;text-indent:0!important;
+}
+.motto small{display:block;color:var(--ink-light);font-size:12.5px;margin-top:6px;}
+.place-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:8px 0 26px;}
+.place-card{border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(59,51,44,.1);}
+.place-card .pic{height:170px;overflow:hidden;}
+.place-card img{transition:transform .5s ease;}
+.place-card:hover img{transform:scale(1.07);}
+.place-card figcaption{
+  padding:12px 14px;font-size:13.5px;color:var(--ink-light);
+  background:var(--white);
+}
+.place-card figcaption b{color:var(--green);font-size:14.5px;display:block;}
+.hobby-cloud{display:flex;flex-wrap:wrap;gap:10px;}
+.hobby-cloud span{
+  padding:7px 18px;border-radius:999px;font-size:14px;
+  background:var(--cream);color:var(--green);
+  border:1px solid #E9DCC9;transition:all .25s ease;
+}
+.hobby-cloud span:hover{background:var(--green);color:#fff;border-color:var(--green);}
+
+/* ============ 书单 ============ */
+#books{background:var(--cream);}
+.book-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+.book-card{
+  display:grid;grid-template-columns:150px 1fr;
+  background:var(--white);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);
+  transition:all .35s ease;
+}
+.book-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);}
+.book-cover{
+  overflow:hidden;background:var(--cream-2);
+}
+.book-cover img{height:100%;transition:transform .5s ease;}
+.book-card:hover .book-cover img{transform:scale(1.06);}
+.book-info{padding:24px 24px 22px;}
+.book-info .book-index{
+  font-family:Georgia,serif;font-size:12px;letter-spacing:2px;
+  color:var(--orange);
+}
+.book-info h3{font-size:19.5px;color:var(--green);margin:4px 0 2px;}
+.book-info .author{font-size:12.5px;color:var(--ink-light);margin-bottom:12px;}
+.book-info .intro{font-size:14px;color:var(--ink-light);margin-bottom:12px;line-height:1.75;}
+.book-info blockquote{
+  font-family:"Noto Serif SC","Songti SC",serif;
+  font-size:13.5px;color:var(--orange);
+  border-left:3px solid var(--orange-light);
+  padding:2px 0 2px 12px;margin-bottom:10px;line-height:1.7;
+}
+.book-info .feeling{font-size:12.5px;color:var(--green);}
+.book-info .feeling::before{content:"💭 我的感受：";font-weight:600;}
+
+/* ---- 档案条 / 人物 / 荣誉（书与歌手通用） ---- */
+.fact-bar{
+  display:flex;flex-wrap:wrap;gap:3px 9px;align-items:center;
+  background:#F6F0E6;border-radius:10px;
+  padding:8px 13px;margin-bottom:12px;
+  font-size:11.5px;color:var(--ink-light);line-height:1.65;
+}
+.fact-bar b{color:var(--green);font-weight:600;}
+.fact-bar .sep{color:#D6C7B2;}
+.book-info .roles,.book-info .honor{
+  font-size:11.5px;color:var(--ink-light);
+  margin-bottom:8px;line-height:1.7;
+}
+.book-info .roles::before{content:"👥 ";}
+.book-info .roles b{color:var(--green);font-weight:600;}
+.book-info .honor{color:#B07A4E;}
+.book-info .honor::before{content:"🏆 ";}
+.songs-title{font-size:11.5px;color:var(--ink-light);margin-bottom:6px;}
+.songs-title::before{content:"🎶 ";}
+.photo-credit{
+  position:absolute;bottom:8px;right:8px;z-index:3;
+  font-size:10px;color:rgba(255,255,255,.92);
+  background:rgba(0,0,0,.38);
+  padding:2px 9px;border-radius:999px;letter-spacing:.5px;
+}
+
+/* ============ 歌单 ============ */
+#music{background:linear-gradient(180deg,#F7EFE3 0%,var(--cream) 100%);}
+.music-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+.music-card{
+  display:grid;grid-template-columns:160px 1fr;
+  background:var(--white);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);
+  transition:all .35s ease;
+}
+.music-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);}
+.singer-photo{position:relative;overflow:hidden;background:var(--cream-2);}
+.singer-photo img{height:100%;transition:transform .5s ease;}
+.music-card:hover .singer-photo img{transform:scale(1.06);}
+.singer-photo .note-badge{
+  position:absolute;top:10px;left:10px;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.9);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;animation:spin 6s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.music-info{padding:22px 22px 20px;display:flex;flex-direction:column;}
+.music-info h3{font-size:20px;color:var(--green);}
+.music-info .style-tag{font-size:12px;color:var(--orange);margin:2px 0 10px;letter-spacing:1px;}
+.music-info .singer-intro{font-size:13.5px;color:var(--ink-light);margin-bottom:12px;line-height:1.75;flex:1;}
+.song-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.song-tags span{
+  font-size:11.5px;padding:3px 11px;border-radius:999px;
+  background:#EEF5F2;color:var(--green);
+}
+.music-links{display:flex;gap:8px;flex-wrap:wrap;}
+.music-links a{
+  flex:1;min-width:96px;text-align:center;
+  font-size:12.5px;padding:8px 10px;border-radius:999px;
+  color:#fff;transition:all .25s ease;
+}
+.music-links a:hover{transform:translateY(-2px);opacity:.9;}
+.link-163{background:var(--red-163);}
+.link-bili{background:var(--bili-pink);}
+.link-yt{background:#2F5D50;}
+.img-note{text-align:center;font-size:12.5px;color:var(--ink-light);margin-top:30px;}
+
+/* ============ 日常碎片 ============ */
+#life{background:var(--cream);}
+.life-wrap{
+  display:grid;grid-template-columns:1.1fr .9fr;
+  gap:40px;align-items:center;
+}
+.life-pic{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.life-pic img{height:420px;transition:transform .6s ease;}
+.life-pic:hover img{transform:scale(1.04);}
+.life-pic figcaption{
+  padding:14px 18px;font-size:13px;color:var(--ink-light);
+  background:var(--white);text-align:center;
+}
+.life-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.life-item{
+  background:var(--white);border-radius:16px;
+  padding:20px 16px;text-align:center;
+  box-shadow:0 6px 18px rgba(59,51,44,.07);
+  transition:all .3s ease;
+}
+.life-item:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);}
+.life-item .em{font-size:28px;display:block;margin-bottom:8px;}
+.life-item b{display:block;font-size:14.5px;color:var(--green);margin-bottom:3px;}
+.life-item small{font-size:12px;color:var(--ink-light);}
+.three-words{
+  grid-column:1 / -1;
+  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+}
+.three-words span{
+  font-family:"Noto Serif SC","Songti SC",serif;
+  font-size:17px;color:var(--orange);
+  padding:10px 26px;border:1.5px solid var(--orange-light);
+  border-radius:999px;background:#FDF6F0;
+}
+
+/* ============ 页脚 ============ */
+footer{
+  background:var(--green);color:rgba(255,255,255,.88);
+  text-align:center;padding:64px 24px 44px;
+}
+footer .quote{
+  font-family:"Noto Serif SC","Songti SC",serif;
+  font-size:clamp(17px,2.4vw,22px);margin-bottom:18px;letter-spacing:1px;
+}
+footer .sub{font-size:13.5px;color:rgba(255,255,255,.7);margin-bottom:26px;}
+footer .copyright{
+  font-size:13px;color:rgba(255,255,255,.55);
+  border-top:1px solid rgba(255,255,255,.15);
+  padding-top:24px;max-width:600px;margin:0 auto;
+}
+
+/* 返回顶部 */
+#backTop{
+  position:fixed;right:24px;bottom:28px;z-index:998;
+  width:48px;height:48px;border-radius:50%;border:none;
+  background:var(--orange);color:#fff;font-size:20px;cursor:pointer;
+  box-shadow:0 8px 22px rgba(224,129,85,.45);
+  opacity:0;visibility:hidden;transition:all .3s ease;
+}
+#backTop.show{opacity:1;visibility:visible;}
+#backTop:hover{background:var(--orange-light);transform:translateY(-3px);}
+
+/* 滚动渐入 */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ============ 响应式 ============ */
+@media (max-width:960px){
+  .about-grid{grid-template-columns:1fr;}
+  .profile-card{position:static;max-width:420px;margin:0 auto;width:100%;}
+  .book-grid,.music-grid{grid-template-columns:1fr;}
+  .life-wrap{grid-template-columns:1fr;}
+  .life-pic img{height:320px;}
+}
+@media (max-width:640px){
+  section{padding:70px 18px;}
+  .nav-toggle{display:block;}
+  .nav-links{
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:4px;
+    background:rgba(251,246,238,.97);backdrop-filter:blur(12px);
+    padding:12px 20px 20px;
+    box-shadow:0 12px 24px rgba(59,51,44,.1);
+    transform:translateY(-130%);transition:transform .35s ease;
+  }
+  .nav-links.open{transform:translateY(0);}
+  .nav-links a{display:block;padding:12px 16px;}
+  .book-card{grid-template-columns:1fr;}
+  .book-cover img{height:240px;}
+  .music-card{grid-template-columns:1fr;}
+  .singer-photo img{height:220px;}
+  .about-body{padding:28px 22px;}
+  .place-grid{grid-template-columns:1fr;}
+  .hero-content{padding:100px 20px 70px;}
+}
